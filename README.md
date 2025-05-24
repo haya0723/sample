@@ -1,167 +1,56 @@
-# React + Vite
+# React + Vite TODO アプリケーション
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+このリポジトリは、ReactとViteを使用して作成されたシンプルなTODOアプリケーションのプロジェクトです。
 
-Currently, two official plugins are available:
+## 概要
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+ユーザーがタスクを登録し、その進捗を管理できる基本的なTODOリスト機能を提供します。
+詳細な要件や設計については、以下のドキュメントを参照してください。
 
-## Expanding the ESLint configuration
+## ドキュメント
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+このプロジェクトでは、ソフトウェア開発ライフサイクル（SDLC）に基づき、以下のドキュメントを作成・管理しています。
 
----
+-   **[01_要件定義](./docs/01_requirements.md)**: アプリケーションの機能要件、非機能要件、ターゲットユーザー、利用シーンなどを定義しています。
+-   **[02_設計](./docs/02_design.md)**: UI/UXデザイン、技術選定、システムアーキテクチャなど、アプリケーションの設計方針を定義しています。
+-   `docs/03_implementation_guidelines.md` (今後作成予定): 実装に関するガイドライン（コーディング規約、ブランチ戦略など）。
+-   `docs/04_testing_strategy.md` (今後作成予定): テスト戦略（テスト計画、テストケースの作成方針など）。
+-   `docs/05_deployment_plan.md` (今後作成予定): デプロイ計画（デプロイ手順、環境設定など）。
+-   `docs/06_maintenance_policy.md` (今後作成予定): 保守ポリシー（バグ修正プロセス、アップデート方針など）。
 
-# TODOアプリ 要件定義
+## 開発環境のセットアップ
 
-## 1. 概要
+このテンプレートは、HMR（ホットモジュールリプレイスメント）といくつかのESLintルールを備えたViteでReactを動作させるための最小限のセットアップを提供します。
 
-シンプルなTODO管理アプリケーションを開発する。ユーザーはタスクを登録し、進捗を管理できる。
+現在、2つの公式プラグインが利用可能です:
 
-## 2. 検討項目
+-   [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) は Fast Refresh のために [Babel](https://babeljs.io/) を使用します。
+-   [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) は Fast Refresh のために [SWC](https://swc.rs/) を使用します。
 
-### 2.1. 機能要件
+### ESLint設定の拡張
 
-#### 2.1.1. 必須機能
+本番アプリケーションを開発している場合は、型認識可能なlintルールを有効にしたTypeScriptの使用をお勧めします。TypeScriptと[`typescript-eslint`](https://typescript-eslint.io)をプロジェクトに統合する方法については、[TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts)を参照してください。
 
--   **タスクの追加**: 新しいタスクを入力し、リストに追加できる。
--   **タスクの表示**: 登録されたタスクを一覧で表示できる。
--   **タスクの編集**: 既存のタスクの内容を編集できる。
--   **タスクの削除**: タスクをリストから削除できる。
--   **タスクの完了/未完了状態の管理**: タスクの完了状態を切り替えられる。
+### 推奨されるIDEセットアップ
 
-#### 2.1.2. 追加機能（検討）
+-   [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (以前は `Vetur`) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
 
--   **タスクの優先度設定**: タスクに優先度（高・中・低など）を設定できる。
--   **タスクの期限設定**: タスクに期限日を設定できる。
--   **タスクのフィルタリング**: 以下の条件でタスクを絞り込んで表示できる。
-    -   すべて
-    -   未完了
-    -   完了済み
-    -   優先度順
--   **タスクの検索**: キーワードでタスクを検索できる。
--   **データ永続化**: アプリを閉じてもタスク情報が保持される（ローカルストレージを利用）。
+### コマンド
 
-### 2.2. 非機能要件
+プロジェクトのセットアップと実行に必要な基本的なコマンドです。
 
--   **ユーザビリティ**:
-    -   シンプルで直感的に操作できるインターフェース。
-    -   初めてのユーザーでも迷わずに使えること。
--   **パフォーマンス**:
-    -   タスクの追加、表示、編集、削除などの操作がスムーズに行えること。
-    -   多数のタスクが登録されても、表示速度が著しく低下しないこと。
--   **保守性**:
-    -   コードはリーダブルで、理解しやすい構造であること。
-    -   機能追加や修正が容易に行える設計であること。
--   **アクセシビリティ**:
-    -   基本的なアクセシビリティ標準に準拠し、多くのユーザーが利用しやすいように配慮する。
--   **互換性**:
-    -   主要なモダンブラウザ（Chrome, Firefox, Safari, Edgeの最新版）で正常に動作すること。
+```bash
+# 依存関係のインストール
+npm install
 
-### 2.3. ターゲットユーザー
+# 開発サーバーの起動
+npm run dev
 
--   個人利用を目的とするユーザー。
--   日々のタスク管理を簡単に行いたい学生や社会人。
--   複数のプロジェクトやタスクを抱えているが、複雑な機能は不要なユーザー。
+# ビルド
+npm run build
 
-### 2.4. 利用シーン
+# ビルドしたファイルのプレビュー
+npm run preview
 
--   個人の日々のタスク（勉強、仕事、私生活の用事など）の管理。
--   小規模なチームやグループでの短期的なタスク共有（データ永続化がローカルストレージの場合、共有は限定的）。
--   買い物リスト、読書リスト、見たい映画リストなどの個人的なリスト管理。
--   イベントの準備や旅行の計画など、ステップごとのタスク管理。
-
-### 2.5. データに関する要件
-
--   **管理するタスク情報**:
-    -   タスクID（一意）
-    -   タスク名（必須）
-    -   タスク詳細（任意）
-    -   作成日時
-    -   更新日時
-    -   完了フラグ（未完了/完了）
-    -   優先度（高・中・低など、追加機能）
-    -   期限日（追加機能）
--   **データ永続化**:
-    -   当面はクライアントサイドのローカルストレージを利用する。
-    -   将来的にはサーバーサイドDBへの移行も視野に入れる（ただし本プロジェクトのスコープ外とする可能性あり）。
-
-### 2.6. 制約条件
-
--   **開発期間**: （ユーザーと相談の上決定）
--   **技術スタック**: React, Vite をベースとする。その他必要なライブラリは適宜選定。
-
----
-
-# TODOアプリ 設計フェーズ
-
-## 1. UI/UXデザイン
-
--   **基本方針**:
-    -   シンプルでクリーンなデザインを目指す。
-    -   ユーザーが必要な情報に素早くアクセスでき、直感的に操作できることを重視する。
--   **画面構成（案）**:
-    -   **メイン画面**:
-        -   ヘッダー: アプリケーションタイトル
-        -   タスク入力エリア: テキスト入力フィールド、追加ボタン
-        -   タスク一覧表示エリア:
-            -   各タスク: チェックボックス（完了/未完了）、タスク名、編集ボタン、削除ボタン
-            -   （追加機能）優先度表示、期限表示
-        -   フッター（オプション）:
-            -   フィルタリングオプション（すべて、未完了、完了済み）
-            -   タスク数表示
--   **ワイヤーフレーム/モックアップ**:
-    -   別途作成し、デザインツール（Figmaなど）で共有することを検討する。
-    -   まずはテキストベースで上記画面構成案を具体化する。
-
-## 2. 技術選定
-
--   **フロントエンド**:
-    -   **ライブラリ/フレームワーク**: React (Vite環境) - 要件定義で決定済み。
-    -   **言語**: JavaScript (ES6+) もしくは TypeScript (導入を推奨)。
--   **状態管理**:
-    -   小規模なアプリケーションであるため、React Context API と `useReducer`フックの組み合わせを第一候補とする。
-    -   状態が複雑化するようであれば、Zustandなどの軽量な状態管理ライブラリの導入を検討する。
--   **スタイリング**:
-    -   CSS Modules を利用し、コンポーネント単位でのスタイルのカプセル化を図る。
-    -   基本的なスタイルは素のCSSで記述し、必要に応じてCSSフレームワーク（例: Tailwind CSSのユーティリティクラスを部分的に利用など）の導入も検討するが、まずはシンプルに保つ。
--   **データ永続化**:
-    -   要件定義に基づき、クライアントサイドの `localStorage` を利用する。
--   **その他ライブラリ**:
-    -   日付操作: `date-fns` や `dayjs` （期限設定機能実装時に検討）
-    -   ID生成: `uuid` （タスクID生成に利用）
-    -   アイコン: React Icons などのライブラリを利用するか、SVGを直接利用する。
-
-## 3. システムアーキテクチャ設計
-
--   **基本方針**:
-    -   Reactのコンポーネントベースのアーキテクチャに従う。
-    -   関心の分離を意識し、UIコンポーネント、状態管理ロジック、ユーティリティ関数などを適切に分割する。
--   **ディレクトリ構成（案）**:
-    ```
-    src/
-    ├── App.jsx             # アプリケーションのルートコンポーネント
-    ├── main.jsx            # エントリーポイント
-    ├── components/         # 再利用可能なUIコンポーネント
-    │   ├── TodoForm.jsx    # タスク入力フォーム
-    │   ├── TodoList.jsx    # タスク一覧
-    │   ├── TodoItem.jsx    # 個々のタスクアイテム
-    │   └── Filter.jsx      # フィルタリングUI (追加機能)
-    ├── contexts/           # React Context (状態管理用)
-    │   └── TodoContext.jsx
-    ├── hooks/              # カスタムフック
-    │   └── useLocalStorage.js # ローカルストレージ操作用フック
-    ├── utils/              # ユーティリティ関数
-    │   └── index.js
-    ├── styles/             # グローバルスタイル、共通スタイル変数など
-    │   └── App.css
-    │   └── index.css
-    └── assets/             # 静的アセット (画像など)
-    ```
--   **データフロー**:
-    -   ユーザー操作 (タスク追加、編集、削除、完了状態変更など) は各UIコンポーネントから発生する。
-    -   イベントハンドラが `TodoContext` から提供される更新関数を呼び出す。
-    -   `TodoContext` 内の `reducer` が状態を更新する。
-    -   状態の変更が `TodoContext` を購読しているコンポーネントに伝播し、UIが再レンダリングされる。
-    -   `localStorage` への保存・読み込みは `useLocalStorage` フックを通じて行い、`TodoContext` の初期化時や状態更新時に同期する。
+# ESLintの実行
+npm run lint
