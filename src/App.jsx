@@ -1,35 +1,72 @@
-import { useState, useEffect } from 'react';
-import { quotes } from './quotes';
+import React from 'react';
 import './App.css';
 
-function getRandomQuote() {
-  return quotes[Math.floor(Math.random() * quotes.length)];
+// 仮のヘッダーコンポーネント
+function DashboardHeader() {
+  return (
+    <header className="dashboard-header">
+      <div className="header-left">
+        {/* ハンバーガーメニューアイコンなどをここに配置可能 */}
+        <span className="project-name">tbs-ai-metadata</span>
+      </div>
+      <div className="header-right">
+        {/* 検索バーやユーザーアイコンなどをここに配置可能 */}
+        <span>ユーザーアイコン</span>
+      </div>
+    </header>
+  );
 }
 
-function App() {
-  const [currentQuote, setCurrentQuote] = useState(getRandomQuote());
-
-  const handleNewQuote = () => {
-    setCurrentQuote(getRandomQuote());
-  };
-
+// 仮のカードコンポーネント
+function InfoCard({ title, children }) {
   return (
-    <div className="app-container">
-      <header>
-        <h1>Random Quote Generator</h1>
-      </header>
-      <main>
-        <div className="quote-card">
-          <p className="quote-text">"{currentQuote.text}"</p>
-          <p className="quote-author">- {currentQuote.author}</p>
-        </div>
-        <button onClick={handleNewQuote} className="new-quote-button">
-          Get New Quote
-        </button>
+    <div className="info-card">
+      <h3>{title}</h3>
+      <div className="card-content">
+        {children}
+      </div>
+    </div>
+  );
+}
+
+// メインのダッシュボードコンポーネント
+function App() {
+  return (
+    <div className="dashboard-container">
+      <DashboardHeader />
+      <main className="dashboard-main">
+        <section className="welcome-section">
+          <h2>ようこそ</h2>
+          <p>プロジェクト: tbs.co.jp {'>'} tbs-ai-metadata</p>
+          {/* プロジェクト番号やIDなども表示可能 */}
+        </section>
+
+        <section className="quick-access-section">
+          <h3>クイックアクセス</h3>
+          <div className="cards-container">
+            <InfoCard title="API とサービス">
+              <p>APIの管理とサービスの有効化</p>
+              {/* アイコンやリンクをここに追加可能 */}
+            </InfoCard>
+            <InfoCard title="IAM と管理">
+              <p>アクセス権の管理</p>
+            </InfoCard>
+            <InfoCard title="課金">
+              <p>請求と予算の管理</p>
+            </InfoCard>
+            <InfoCard title="Compute Engine">
+              <p>仮想マシンの作成と管理</p>
+            </InfoCard>
+            <InfoCard title="Cloud Storage">
+              <p>オブジェクトストレージ</p>
+            </InfoCard>
+            <InfoCard title="BigQuery">
+              <p>データウェアハウス</p>
+            </InfoCard>
+            {/* 他のカードも追加可能 */}
+          </div>
+        </section>
       </main>
-      <footer>
-        <p>A simple React app by Cline</p>
-      </footer>
     </div>
   );
 }

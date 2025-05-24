@@ -1,76 +1,104 @@
+/* Reset and base styles */
 body {
+  margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  background-color: #f0f2f5;
-  color: #333;
-  margin: 0;
+  background-color: #f8f9fa; /* GCP-like background */
+  color: #202124; /* GCP-like text color */
+}
+
+.dashboard-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
   min-height: 100vh;
 }
 
-.app-container {
+/* Header styles */
+.dashboard-header {
   background-color: #ffffff;
-  padding: 30px 40px;
-  border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  max-width: 600px;
-  width: 90%;
+  border-bottom: 1px solid #dadce0;
+  padding: 0 24px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
-header h1 {
-  color: #2c3e50;
-  margin-bottom: 25px;
-  font-size: 2em;
+.header-left .project-name {
+  font-size: 18px;
+  font-weight: 500;
+  color: #3c4043;
 }
 
-.quote-card {
-  background-color: #f9f9f9;
-  border-left: 5px solid #3498db;
-  margin: 20px 0;
-  padding: 20px;
+.header-right span { /* Placeholder for user icon/search */
+  color: #5f6368;
+}
+
+/* Main content area styles */
+.dashboard-main {
+  padding: 24px;
+  flex-grow: 1;
+}
+
+.welcome-section {
+  margin-bottom: 32px;
+}
+
+.welcome-section h2 {
+  font-size: 24px;
+  font-weight: 400;
+  color: #202124;
+  margin-bottom: 8px;
+}
+
+.welcome-section p {
+  font-size: 14px;
+  color: #5f6368;
+}
+
+.quick-access-section h3 {
+  font-size: 18px;
+  font-weight: 500;
+  color: #202124;
+  margin-bottom: 16px;
+}
+
+/* Cards container and individual card styles */
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.info-card {
+  background-color: #ffffff;
+  border: 1px solid #dadce0;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+  box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15);
+  transition: box-shadow 0.3s ease-in-out;
 }
 
-.quote-text {
-  font-size: 1.4em;
-  font-style: italic;
-  color: #34495e;
-  margin-bottom: 10px;
-  line-height: 1.6;
+.info-card:hover {
+  box-shadow: 0 1px 3px 0 rgba(60,64,67,0.3), 0 4px 8px 3px rgba(60,64,67,0.15);
 }
 
-.quote-author {
-  font-size: 1em;
-  color: #7f8c8d;
-  text-align: right;
+.info-card h3 {
+  font-size: 16px;
+  font-weight: 500;
+  color: #3c4043;
+  margin-top: 0;
+  margin-bottom: 12px;
 }
 
-.new-quote-button {
-  background-color: #3498db;
-  color: white;
-  border: none;
-  padding: 12px 25px;
-  font-size: 1em;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-top: 20px;
+.info-card .card-content p {
+  font-size: 14px;
+  color: #5f6368;
+  line-height: 1.5;
+  margin-bottom: 0;
 }
 
-.new-quote-button:hover {
-  background-color: #2980b9;
-}
-
-.new-quote-button:active {
-  background-color: #2471a3;
-}
-
-footer {
-  margin-top: 30px;
-  font-size: 0.9em;
-  color: #95a5a6;
-}
+/* Remove old styles if any - this replaces the entire content */
